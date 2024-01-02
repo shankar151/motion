@@ -1,0 +1,10 @@
+var jabber_user='helpdesk-queue';
+var jabber_server='chat.libraryh3lp.com';
+var jabber_resources=[{
+ name: 'libraryh3lp',
+ priority: 5,
+ show: 'unavailable',
+ status: ''
+}];
+var jabber_client_id='1CIR7lullNxT7o4';
+lh3cb1696655972423();

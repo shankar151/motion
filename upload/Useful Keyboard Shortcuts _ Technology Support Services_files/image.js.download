@@ -1,0 +1,69 @@
+jQuery(document).ready(function() {
+
+
+//  var vph = jQuery(window).height();
+  var maxThumb_width = 200;
+  var maxReg_width = 500;
+
+  jQuery(".node-type-documentation .zone-content").append('<div id="hovimg"></div>');
+
+  jQuery(".node-type-documentation IMG").mouseenter(function() {
+    var vpw = jQuery(window).width();
+    /*if(vpw<500){ return false; }*/
+    var imgOffset = jQuery(this).offset(); // Get IMG Offset
+    var cureleH = jQuery(this).height(); // Get current height
+    var cureleW = jQuery(this).width(); // Get current width
+    var imgsrc = jQuery(this).attr('src'); // Get images src
+    var leftImgOffset = imgOffset.left + 203; // Adjust images left Offset
+    var topImgOffset = imgOffset.top - (cureleH / 2); // Adjust images top Offset
+    var rlImg = new Image();
+    jQuery(rlImg).error(function () { alert('Unable to Load the image.'); }).attr('src',imgsrc);
+    var imgwidth = rlImg.width;
+    var imgheight = rlImg.height;
+
+
+    if(cureleW == 200 && imgwidth !=200){
+
+      if (imgheight > imgwidth) {
+        if(imgheight < 600){ h = imgheight; }else{ h = maxReg_width; };
+        var w = Math.ceil(imgwidth / imgheight * h);
+      }else{
+        if(imgwidth < 600){ w = imgwidth; }else{ w = maxReg_width; };
+        var h = Math.ceil(imgheight / imgwidth * w);
+      };
+
+      jQuery("#hovimg").html('<img class="docArticlehovImg" src=' + rlImg.src + ' />').offset({ top: topImgOffset, left: leftImgOffset }).css({ 'border':'1px solid #000','width':w,'z-index':9999});
+      jQuery(".docArticlehovImg").attr('height',h).attr('width',w);
+      jQuery(this).addClass('docArticle');
+    };
+  });
+  jQuery(".node-type-documentation IMG").mouseleave(function() {
+    var vpw = jQuery(window).width();
+   /* if(vpw<500){ return false; }*/
+    jQuery("#hovimg").css('border','none');
+    jQuery(".docArticlehovImg").remove(); // Remove hover image
+  });
+  /*
+  jQuery(".node-documentation IMG").click(function() {
+    var vpw = jQuery(window).width();
+    if(vpw>500){ return false; }
+    var imgOffset = jQuery(this).offset(); // Get IMG Offset
+    var cureleH = jQuery(this).height(); // Get current height
+    var cureleW = jQuery(this).width(); // Get current width
+    var imgsrc = jQuery(this).attr('src'); // Get images src
+    var leftImgOffset = imgOffset.left; // Adjust images left Offset
+    var topImgOffset = imgOffset.top - (cureleH / 2); // Adjust images top Offset
+    var rlImg = new Image();
+    jQuery(rlImg).error(function () { alert('Unable to Load the image.'); }).attr('src',imgsrc);
+    var imgwidth = rlImg.width;
+    var imgheight = rlImg.height;
+    jQuery("#hovimg").html('<img class="docArticlehovImg" src=' + rlImg.src + ' />').offset({ top: topImgOffset, left: leftImgOffset }).css({ 'border':'1px solid #000'});
+    jQuery(this).addClass('docArticle');
+  });
+  jQuery("#hovimg").click(function(){
+    jQuery("#hovimg").css('border','none');
+    jQuery(".docArticlehovImg").remove(); // Remove hover image
+  });*/
+
+
+});

@@ -1,0 +1,21 @@
+function dlToggle(item) {
+   obj=document.getElementById(item);
+   visible=(obj.style.display!="none")
+   key=document.getElementById("x" + item);
+   if (visible) {
+     obj.style.display="none";
+     key.innerHTML="[+]";
+   } else {
+      obj.style.display="block";
+      key.innerHTML="[-]";
+   }
+   obj=document.getElementById("xs" + item);
+   visible=(obj.style.display!="none")
+   if (visible) {
+     obj.style.display="none";
+
+   } else {
+      obj.style.display="block";
+
+   }
+}
